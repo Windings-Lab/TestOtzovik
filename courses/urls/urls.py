@@ -1,7 +1,8 @@
 from django.urls import path
 
-from .views import (AddReviewView, CourseDetailView, CourseListView,
-                    ModerateReviewView, review_moderation)
+from courses.views.views import (AddReviewView, CourseDetailView,
+                                 CourseListView, ModerateReviewView,
+                                 review_moderation)
 
 urlpatterns = [
     path('courses/', CourseListView.as_view(), name='course_list'),

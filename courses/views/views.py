@@ -5,9 +5,9 @@ from django.shortcuts import redirect, render
 from django.views import View
 from django.views.generic import DetailView, ListView
 
-from .forms import ReviewForm
-from .linkedin import share_on_linkedin
-from .models import Course, Review
+from courses.forms import ReviewForm
+from courses.linkedin import share_on_linkedin
+from courses.models import Course, Review
 
 
 class CourseListView(ListView):
@@ -73,12 +73,12 @@ class ModerateReviewView(View):
 
         if status == 'approved':
             review.status = 'approved'
-            review.save()
             share_on_linkedin(
                 access_token=review.author.get_access_token(),
                 linkedin_id=review.author.linkedin_id,
                 course_name=review.course.title
             )
+            review.save()
             return HttpResponse("Review approved successfully")
         elif status == 'rejected':
             review.status = 'rejected'

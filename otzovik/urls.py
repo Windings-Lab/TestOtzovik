@@ -6,7 +6,13 @@ from users.views.authentication_views import index
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('drf_social_oauth2.urls', namespace='drf')),
-    path('', include('users.urls')),
-    path('', include('courses.urls')),
+    path('', include('users.urls.urls')),
+    path('', include('courses.urls.urls')),
+    path('api/v1/', include('users.urls.api_urls')),
+    path('api/v1/', include('courses.urls.api_urls')),
+
     path('', index)
 ]
+
+
+

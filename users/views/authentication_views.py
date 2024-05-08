@@ -58,7 +58,9 @@ class LinkedInCallbackView(View):
             user = self.create_or_get_user(user_data, profile_data, access_token, refresh_token)
             django_login(request, user, backend='django.contrib.auth.backends.ModelBackend')
 
-            return render(request, 'success.html', {'access_token': access_token, 'refresh_token': refresh_token, 'user_data': user_data})
+            return render(request, 'success.html',
+                          {'access_token': access_token, 'refresh_token': refresh_token, 'user_data': user_data})
+            # return redirect('home')
         else:
             return HttpResponse('Failed to obtain access token', status=400)
 
@@ -100,8 +102,6 @@ class LinkedInCallbackView(View):
     def create_or_get_user(user_data, profile_data, access_token, refresh_token):
         linkedin_id = user_data.get('sub')
         email = user_data.get('email')
-        first_name = user_data.get('given_name')
-        last_name = user_data.get('family_name')
         full_name = user_data.get('name')
         picture = user_data.get('picture')
         profile_link = f'https://www.linkedin.com/in/{profile_data["vanityName"]}/'
@@ -121,8 +121,6 @@ class LinkedInCallbackView(View):
                 email=email,
                 access_token=access_token,
                 refresh_token=refresh_token,
-                # first_name=first_name,
-                # last_name=last_name,
                 full_name=full_name,
                 picture=picture,
                 profile_link=profile_link

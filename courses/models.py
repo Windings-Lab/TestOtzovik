@@ -50,4 +50,4 @@ class Review(models.Model):
     status = models.CharField(max_length=20, choices=MODERATION_CHOICES, default=PENDING)
 
     def __str__(self):
-        return f"Review for {self.course.title} by {self.author.full_name}"
+        return f"{self.id}, Review for {self.course.title} by {self.author.full_name}"

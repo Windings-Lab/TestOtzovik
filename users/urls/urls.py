@@ -1,7 +1,7 @@
 from django.urls import path
 
-from .views.authentication_views import (LinkedInCallbackView, home, login,
-                                         logout)
+from users.views.authentication_views import (LinkedInCallbackView, home,
+                                              login, logout)
 
 urlpatterns = [
     path('login/', login, name='login'),
