@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    LinkedIn Authentication Success
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1>LinkedIn Authentication Successful</h1>
+        <p>Access Token: {{ access_token }}</p>
+        <p>Refresh Token: {{ refresh_token }}</p>
+
+        <h1>Welcome!</h1>
+        <p>Name: {{ user_data.name }}</p>
+        <p>Email: {{ user_data.email }}</p>
+        <p>Picture: <img src="{{ user_data.picture }}" alt="Profile Picture"></p>
+        <p>LinkedIn Profile: <a href="{{ user_data.profile_link }}">Profile Link</a></p>
+        <!-- You can add more content here as needed -->
+    </div>
+{% endblock %}

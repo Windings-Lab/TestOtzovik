@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Home Page
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1>Welcome to Your Website!</h1>
+        <p>This is the home page of your website. You can customize this content as per your needs.</p>
+        {% if user.is_authenticated %}
+            <p>Welcome, {{ user.username }}! You are logged in.</p>
+        {% else %}
+            <p>You are not logged in. Please <a href="{% url 'login' %}">login</a> to access more features.</p>
+        {% endif %}
+    </div>
+{% endblock %}

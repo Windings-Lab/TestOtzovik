@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Login with LinkedIn
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1>Welcome to our website</h1>
+        <p>Please click the button below to log in with your LinkedIn account:</p>
+        <a href="{{ url }}">
+            <button class="btn btn-secondary">Login with LinkedIn</button>
+        </a>
+    </div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Review Moderation{% endblock %}
+
+{% block content %}
+    <h1>Review Moderation</h1>
+    
+    <ul>
+        {% for review in pending_reviews %}
+            <li>
+                <p><strong>{{ review.author.full_name }}</strong> reviewed {{ review.course.name }}</p>
+                <p>{{ review.text }}</p>
+                <p>Rating: {{ review.rating }}</p>
+                <p>Link: {{ review.author.profile_link }}</p>
+                <p>Mail: {{ review.author.email }}</p>
+                <form action="{% url 'moderate_review' review.pk %}" method="POST">
+                    {% csrf_token %}
+                    <label for="status">Moderation Status:</label>
+                    <select name="status" id="status">
+                        <option value="approved">Approve</option>
+                        <option value="rejected">Reject</option>
+                    </select>
+                    <button type="submit">Submit</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

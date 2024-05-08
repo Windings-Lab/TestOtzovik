@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Course Details{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h1>{{ course.name }}</h1>
+        <p>Price: ${{ course.price }}</p>
+        <p>Company: {{ course.company }}</p>
+        <p>Age: {{ course.age }}</p>
+        <p>Address: {{ course.address }}</p>
+        <p>Site: {{ course.site }}</p>
+        <p>Contact: {{ course.contact }}</p>
+        <p>Description: {{ course.description }}</p>
+        <p>Average Rating: {{ course.average_rating|default:"No rating yet" }}</p>
+        <p>Number of Reviews: {{ course.review_counter }}</p>
+
+        <a href="{% url 'add_review' course.id %}" class="btn btn-primary">Leave a Review</a>
+
+        <h2>Approved Reviews</h2>
+        {% if approved_reviews %}
+            <ul>
+                {% for review in approved_reviews %}
+                    <li>
+                        <p><strong>{{ review.author.full_name }}</strong> reviewed {{ review.course.name }}</p>
+                        <p>{{ review.text }}</p>
+                        <p>Rating: {{ review.rating }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No approved reviews yet</p>
+        {% endif %}
+    </div>
+{% endblock %}
