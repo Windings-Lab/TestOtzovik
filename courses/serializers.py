@@ -6,7 +6,7 @@ from courses.models import Course, Review
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
-        fields = ['id', 'title', 'price', 'company', 'group', 'location', 'website', 'contact', 'description']
+        fields = ['id', 'title', 'price', 'company', 'age', 'location', 'website', 'contact', 'description']
 
 
 class ReviewSerializer(serializers.ModelSerializer):

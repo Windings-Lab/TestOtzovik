@@ -5,19 +5,19 @@ from users.models import CustomUser
 
 
 class Course(models.Model):
-    title = models.CharField(max_length=255)
-    price = models.IntegerField()
-    company = models.CharField(max_length=255)
-    group = models.CharField(max_length=100)
-    location = models.CharField(max_length=255)
-    website = models.URLField()
-    contact = models.CharField(max_length=255)
-    description = models.TextField()
-    time_added = models.DateTimeField(auto_now_add=True)
-    time_updated = models.DateTimeField(auto_now=True)
+    title = models.CharField(max_length=255, null=True, blank=True)
+    price = models.CharField(max_length=255, null=True, blank=True)
+    company = models.CharField(max_length=255, null=True, blank=True)
+    age = models.CharField(max_length=100, null=True, blank=True)
+    location = models.CharField(max_length=255, null=True, blank=True)
+    website = models.URLField(null=True, blank=True)
+    contact = models.CharField(max_length=255, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+    time_added = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    time_updated = models.DateTimeField(auto_now=True, null=True, blank=True)
 
     def __str__(self):
-        return str(self.title)
+        return f"{self.id}, {self.title}"
 
     @property
     def review_counter(self):

@@ -3,7 +3,6 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated, BasePermission
 from rest_framework import status
-from django.forms import model_to_dict
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
 
@@ -143,15 +142,4 @@ class ModerateReviewAPIView(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# def post(self, request):
-#     post_data = Course.objects.create(
-#         title=request.data['title'],
-#         price=request.data['price'],
-#         company=request.data['company'],
-#         group=request.data['group'],
-#         location=request.data['location'],
-#         website=request.data['website'],
-#         contact=request.data['contact'],
-#         description=request.data['description'],
-#     )
-#     return Response({'post': model_to_dict(post_data)})
+
