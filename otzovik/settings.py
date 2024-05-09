@@ -40,8 +40,6 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', 'edb3-62-16-0-149.ngrok-free
 AUTH_USER_MODEL = 'users.CustomUser'
 
 
-# Application definition
-
 INSTALLED_APPS = [
     'jazzmin',
 
@@ -57,6 +55,7 @@ INSTALLED_APPS = [
     'bootstrap5',
 
     'rest_framework',
+    'drf_yasg',
     'corsheaders',
 
     'oauth2_provider',
@@ -77,6 +76,14 @@ MIDDLEWARE = [
 ]
 
 # CORS_ORIGIN_ALLOW_ALL = True
+
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3000",
+# ]
+
+SWAGGER_SETTINGS = {
+    'DEFAULT_INFO': 'otzovik.api_info.api_info',
+}
 
 ROOT_URLCONF = 'otzovik.urls'
 
@@ -168,8 +175,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-        # 'rest_framework.permissions.AllowAny',
+        # 'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
     ),
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',

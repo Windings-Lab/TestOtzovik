@@ -19,3 +19,16 @@ class ApprovedReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
         fields = ['id', 'text', 'author', 'course', 'status']
+
+
+class ReviewFormSerializer(serializers.Serializer):
+    text = serializers.CharField()
+    rating = serializers.IntegerField(min_value=1, max_value=5)
+
+
+class ReviewModerationSerializer(serializers.Serializer):
+    status = serializers.ChoiceField(choices=Review.MODERATION_CHOICES)
+
+    class Meta:
+        model = Review
+        fields = ['status']

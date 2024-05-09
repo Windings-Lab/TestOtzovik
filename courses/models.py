@@ -1,6 +1,5 @@
 from django.db import models
 from django.db.models import Avg
-from django.utils.translation import gettext_lazy as _
 
 from users.models import CustomUser
 
@@ -14,6 +13,8 @@ class Course(models.Model):
     website = models.URLField()
     contact = models.CharField(max_length=255)
     description = models.TextField()
+    time_added = models.DateTimeField(auto_now_add=True)
+    time_updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return str(self.title)
@@ -43,11 +44,13 @@ class Review(models.Model):
     APPROVED = 'approved'
     REJECTED = 'rejected'
     MODERATION_CHOICES = [
-        (PENDING, _('Pending')),
-        (APPROVED, _('Approved')),
-        (REJECTED, _('Rejected')),
+        (PENDING, 'Pending'),
+        (APPROVED, 'Approved'),
+        (REJECTED, 'Rejected'),
     ]
     status = models.CharField(max_length=20, choices=MODERATION_CHOICES, default=PENDING)
+    time_added = models.DateTimeField(auto_now_add=True)
+    time_updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.id}, Review for {self.course.title} by {self.author.full_name}"

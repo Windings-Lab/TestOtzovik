@@ -43,6 +43,7 @@ class CustomUserManager(BaseUserManager):
 
 
 class CustomUser(AbstractUser):
+    username = models.CharField(max_length=100, unique=False, blank=True, null=True)
     access_token = models.CharField(max_length=2000, unique=True)
     refresh_token = models.CharField(max_length=2000, unique=True, null=True)
     linkedin_id = models.CharField(max_length=255, unique=True)
