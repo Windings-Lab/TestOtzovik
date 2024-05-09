@@ -1,6 +1,6 @@
 .env
 #db.sqlite3
-#*.sqlite3
+#db.sqlite3-journal
 *.pyc
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -62,8 +62,6 @@ coverage.xml
 # Django stuff:
 *.log
 local_settings.py
-#db.sqlite3
-#db.sqlite3-journal
 
 # Flask stuff:
 instance/
@@ -126,16 +124,10 @@ sftp-config.json
 # Pyre type checker
 .pyre/
 
-# pytest
-__pycache__/
 .cacheprovider
 
 # mypy
 .mypy_cache/
-
-# PyInstaller
-build/
-dist/
 
 # Windows Installer files
 *.cab
@@ -156,145 +148,29 @@ Desktop.ini
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
-# VS Code folders
-.vscode/
-
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
-
-# Windows shortcuts
-*.lnk
-
-# JetBrains IDEs
-.idea/
-
-# PyCharm
-.idea/
 
 # Spyder project settings
 .spyderproject
 .spyproject
-
-# Rope project settings
-.ropeproject
 
 # mkdocs documentation
 /site
 
-# mypy
-.mypy_cache/
-
 # Environments
 .env/
 .venv/
-venv/
-ENV/
+
 
 # Jupyter Notebook
 .ipynb_checkpoints/
-
-# pyenv
-.python-version
-
-# celery beat schedule file
-celerybeat-schedule
-
-# SageMath parsed files
-.sage.py
 
 # wxPython
 .benchmarks/
 
-# PyInstaller
-dist/
-build/
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Translations
-*.mo
-
-# PyBuilder
-target/
-
-# IPython
-.ipynb_checkpoints/
-
-# pyenv
-.python-version
-
-# celery beat schedule file
-celerybeat-schedule
-
-# SageMath parsed files
-.sage.py
-
-# Sphinx documentation
-docs/_build/
-
-# PyInstaller
-build/
-dist/
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Translations
-*.mo
-
-# PyBuilder
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints/
-
-# IPython
-.ipynb_checkpoints/
-
-# pyenv
-.python-version
-
-# celery beat schedule file
-celerybeat-schedule
-
-# SageMath parsed files
-.sage.py
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Visual Studio Code
-.vscode/
-
-# VS Code directories
-.vscode/
-
-# VS Code workspace files
-*.code-workspace
-
-# pycache
-__pycache__/
-
 # pyright
 .pyright/
 
-# .pytest_cache
-__pycache__/
 pytest_cache/
-
-# .vscode settings
-.vscode/
-
-# PyInstaller
-dist/
-build/
 
 # .sconsign.dblite
 .sconsign.dblite
@@ -323,77 +199,18 @@ yarn-error.log
 # parcel-bundler
 .cache/
 
-# Next.js
-.next/
-out/
-
-# Nuxt.js
-.nuxt/
-dist/
-
-# Gatsby
-.cache/
-public/
-
-# Jest
-coverage/
-
-# Amplify
-.amplify/
-
 # Django
-*.log
-*.pot
-*.pyc
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
 media/
-
-# Flask
-instance/
-.webassets-cache
 
 # PEP 582; used by e.g. github.com/David-OConnor/pyflow
 __pypackages__/
 
 # Celery
-celerybeat-schedule
 celerybeat.pid
-
-# SageMath parsed files
-.sage.py
-
-# Environments
-.env
-.venv
-venv/
-env/
-ENV/
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
 
 # pytype static type checker
 .pytype/
 
 # pytest
-__pycache__/
-.pytest_cache/
 pytestdebug.log
 pytest-report.xml
