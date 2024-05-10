@@ -21,6 +21,8 @@ DB_PASSWORD = os.environ.get('DB_PASSWORD')
 # Django
 DJANGO_SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
+PORT = int(os.environ.get('PORT', 8000))
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'users', 'templates')
 
@@ -34,7 +36,7 @@ SECRET_KEY = DJANGO_SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', 'edb3-62-16-0-149.ngrok-free.app', 'localhost:8000']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '5c64-62-16-0-149.ngrok-free.app', 'localhost:8000', 'https://testotzovik.onrender.com']
 
 
 AUTH_USER_MODEL = 'users.CustomUser'
@@ -75,11 +77,11 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware'
 ]
 
-# CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = True
 
-# CORS_ALLOWED_ORIGINS = [
-#     "http://localhost:3000",
-# ]
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
 
 SWAGGER_SETTINGS = {
     'DEFAULT_INFO': 'otzovik.api_info.api_info',
