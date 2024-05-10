@@ -26,7 +26,6 @@ PORT = int(os.environ.get('PORT', 8000))
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'users', 'templates')
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -34,13 +33,11 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'users', 'templates')
 SECRET_KEY = DJANGO_SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '5c64-62-16-0-149.ngrok-free.app', 'localhost:8000', 'testotzovik.onrender.com']
-
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', 'localhost:8000', 'testotzovik.onrender.com']
 
 AUTH_USER_MODEL = 'users.CustomUser'
-
 
 INSTALLED_APPS = [
     'jazzmin',
@@ -83,6 +80,12 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://testotzovik.onrender.com',
+    'http://localhost',
+    'http://127.0.0.1',
+]
+
 SWAGGER_SETTINGS = {
     'DEFAULT_INFO': 'otzovik.api_info.api_info',
 }
@@ -110,7 +113,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'otzovik.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -132,8 +134,6 @@ DATABASES = {
     }
 }
 
-
-
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -152,7 +152,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -163,7 +162,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
@@ -205,13 +203,11 @@ REST_FRAMEWORK = {
     # ),
 }
 
-
 AUTHENTICATION_BACKENDS = [
     # 'social_core.backends.linkedin.LinkedinOAuth2',
     # 'drf_social_oauth2.backends.DjangoOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 ]
-
 
 JAZZMIN_SETTINGS = {
     "site_title": "DjangoTTS",
@@ -241,7 +237,7 @@ JAZZMIN_SETTINGS = {
     # Links to put along the top menu
     "topmenu_links": [
         # Url that gets reversed (Permissions can be added)
-        {"name": "Admin: Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"name": "Admin: Home", "url": "admin:index", "permissions": ["auth.view_user"]},
         # external url that opens in a new window (Permissions can be added)
         # {"name": "API docs: Swagger", "url": "/api/schema/swagger/"},
         # {"name": "API docs: ReDoc", "url": "/api/schema/redoc/"},
@@ -314,6 +310,5 @@ JAZZMIN_UI_TWEAKS = {
     },
     "actions_sticky_top": False
 }
-
 
 LOGIN_URL = 'login'

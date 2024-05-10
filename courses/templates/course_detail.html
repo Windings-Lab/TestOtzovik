@@ -15,7 +15,7 @@
         <p>Average Rating: {{ course.average_rating|default:"No rating yet" }}</p>
         <p>Number of Reviews: {{ course.review_counter }}</p>
 
-        <a href="{% url 'add_review' course.id %}" class="btn btn-primary">Leave a Review</a>
+        <a href="{% url 'add-review' course.id %}" class="btn btn-primary">Leave a Review</a>
 
         <h2>Approved Reviews</h2>
         {% if approved_reviews %}

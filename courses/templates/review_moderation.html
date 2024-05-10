@@ -13,7 +13,7 @@
                 <p>Rating: {{ review.rating }}</p>
                 <p>Link: {{ review.author.profile_link }}</p>
                 <p>Mail: {{ review.author.email }}</p>
-                <form action="{% url 'moderate_review' review.pk %}" method="POST">
+                <form action="{% url 'moderate-review' review.pk %}" method="POST">
                     {% csrf_token %}
                     <label for="status">Moderation Status:</label>
                     <select name="status" id="status">
