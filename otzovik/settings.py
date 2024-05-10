@@ -55,7 +55,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'drf_yasg',
-    'corsheaders',
+    # 'corsheaders',
 
     'oauth2_provider',
     'social_django',
@@ -71,10 +71,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    'corsheaders.middleware.CorsMiddleware'
+    # 'corsheaders.middleware.CorsMiddleware'
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_ALLOW_ALL = True
 
 # CORS_ALLOWED_ORIGINS = [
 #     "http://localhost:3000",
