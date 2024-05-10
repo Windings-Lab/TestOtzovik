@@ -36,7 +36,7 @@ SECRET_KEY = DJANGO_SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '5c64-62-16-0-149.ngrok-free.app', 'localhost:8000', 'https://testotzovik.onrender.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '5c64-62-16-0-149.ngrok-free.app', 'localhost:8000', 'testotzovik.onrender.com']
 
 
 AUTH_USER_MODEL = 'users.CustomUser'
