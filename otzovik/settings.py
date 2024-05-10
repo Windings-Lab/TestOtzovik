@@ -90,6 +90,9 @@ CSRF_TRUSTED_ORIGINS = [
 
 SWAGGER_SETTINGS = {
     'DEFAULT_INFO': 'otzovik.api_info.api_info',
+    'USE_SESSION_AUTH': False,
+    'VALIDATOR_URL': None,
+    'SERVER_URL': 'https://testotzovik.onrender.com',
 }
 
 ROOT_URLCONF = 'otzovik.urls'
