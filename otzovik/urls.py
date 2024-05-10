@@ -11,6 +11,7 @@ from .api_info import api_info
 
 schema_view = get_schema_view(
     api_info,
+    url='https://testotzovik.onrender.com/swagger/',
     public=True,
     permission_classes=(permissions.AllowAny,),
 )
