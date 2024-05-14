@@ -1,16 +1,16 @@
+from drf_yasg import openapi
+from drf_yasg.utils import swagger_auto_schema
+from rest_framework import status
 from rest_framework.generics import ListAPIView
+from rest_framework.permissions import BasePermission, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.permissions import IsAuthenticated, BasePermission
-from rest_framework import status
-from drf_yasg.utils import swagger_auto_schema
-from drf_yasg import openapi
 
-
+from courses.linkedin import share_on_linkedin
 from courses.models import Course, Review
 from courses.serializers import (ApprovedReviewSerializer, CourseSerializer,
-                                 ReviewSerializer, ReviewFormSerializer, ReviewModerationSerializer)
-from courses.linkedin import share_on_linkedin
+                                 ReviewFormSerializer,
+                                 ReviewModerationSerializer, ReviewSerializer)
 
 
 class IsStaffPermission(BasePermission):

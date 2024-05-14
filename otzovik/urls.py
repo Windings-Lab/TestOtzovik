@@ -1,13 +1,13 @@
-from django.contrib import admin
-from django.urls import include, path
-from rest_framework import permissions
-from drf_yasg.views import get_schema_view
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib import admin
+from django.urls import include, path
+from drf_yasg.views import get_schema_view
+from rest_framework import permissions
 
 from users.views.authentication_views import index
-from .api_info import api_info
 
+from .api_info import api_info
 
 schema_view = get_schema_view(
     api_info,
@@ -18,7 +18,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('auth/', include('drf_social_oauth2.urls', namespace='drf')),
+    # path('auth/', include('drf_social_oauth2.urls', namespace='drf')),
     path('', include('users.urls.urls')),
     path('', include('courses.urls.urls')),
     path('api/v1/', include('users.urls.api_urls')),

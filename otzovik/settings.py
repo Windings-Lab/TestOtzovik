@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 
+import dj_database_url
 from dotenv import find_dotenv, load_dotenv
 
 ENV_FILE = find_dotenv()
@@ -16,7 +17,9 @@ LINKEDIN_CALLBACK_URL = os.environ.get('LINKEDIN_CALLBACK_URL')
 # Postgres Params
 DB_NAME = os.environ.get('DB_NAME')
 DB_USER = os.environ.get('DB_USER')
+DB_HOST = os.environ.get('db_host')
 DB_PASSWORD = os.environ.get('DB_PASSWORD')
+DB_URL = os.environ.get('DB_URL')
 
 # Django
 DJANGO_SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
@@ -33,9 +36,9 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'users', 'templates')
 SECRET_KEY = DJANGO_SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', 'localhost:8000', 'testotzovik.onrender.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', 'localhost:8000', '0.0.0.0', 'testotzovik.onrender.com']
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
@@ -56,10 +59,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg',
     'corsheaders',
-
-    'oauth2_provider',
-    'social_django',
-    'drf_social_oauth2',
 ]
 
 MIDDLEWARE = [
@@ -71,7 +70,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    'corsheaders.middleware.CorsMiddleware'
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -109,9 +108,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-
-                'social_django.context_processors.backends',
-                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -122,23 +118,26 @@ WSGI_APPLICATION = 'otzovik.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASE_URL = DB_URL
+DATABASES = {'default': dj_database_url.config(default=DB_URL)}
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
 #         'NAME': DB_NAME,
 #         'USER': DB_USER,
 #         'PASSWORD': DB_PASSWORD,
-#         'HOST': 'localhost',
+#         'HOST': DB_HOST,
 #         'PORT': '5432',
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -204,22 +203,18 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
-    # 'DEFAULT_AUTHENTICATION_CLASSES': (
-    #     'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
-    #     'drf_social_oauth2.authentication.SocialAuthentication',
-    # ),
 }
 
 AUTHENTICATION_BACKENDS = [
-    # 'social_core.backends.linkedin.LinkedinOAuth2',
-    # 'drf_social_oauth2.backends.DjangoOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 ]
 
+LOGIN_URL = 'login'
+
 JAZZMIN_SETTINGS = {
-    "site_title": "DjangoTTS",
-    "site_header": "DjangoTTS",
-    "site_brand": "DjangoTTS",
+    "site_title": "Otzovik",
+    "site_header": "Otzovik",
+    "site_brand": "Otzovik",
     # Logo to use for your site, must be present in static files, used for brand on top left
     # "site_logo": "books/img/logo.png",
     # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
@@ -317,5 +312,3 @@ JAZZMIN_UI_TWEAKS = {
     },
     "actions_sticky_top": False
 }
-
-LOGIN_URL = 'login'

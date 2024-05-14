@@ -1,10 +1,9 @@
-import sqlite3
 import os
-import django
-from django.conf import settings
-from courses_parser import parse_soup, total_links, fetch_data, make_soup
-# from courses.models import Course
+import sqlite3
 
+import django
+from courses_parser import fetch_data, make_soup, parse_soup, total_links
+from django.conf import settings
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "otzovik.otzovik.settings")
 
@@ -34,20 +33,3 @@ for link in total_links():
     soup = make_soup(fetch_data(link))
     db_data = parse_soup(soup)
     insert_course(db_data)
-
-
-# from courses.models import Course
-
-# def insert_course(course_data):
-#     title, price, company, age, location, website, contact, description = course_data
-#     Course.objects.get_or_create(
-#         title=title,
-#         price=price,
-#         company=company,
-#         age=age,
-#         location=location,
-#         website=website,
-#         contact=contact,
-#         description=description,
-#     )
-

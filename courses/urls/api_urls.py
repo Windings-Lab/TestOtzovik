@@ -1,8 +1,10 @@
 from django.urls import path
 
-from courses.views.api_views import (ApprovedReviewsAPIView,
+from courses.views.api_views import (AddReviewAPIView, ApprovedReviewsAPIView,
                                      CourseDetailAPIView, CoursesListAPIView,
-                                     ReviewDetailAPIView, AddReviewAPIView, ReviewModerationAPIView, ModerateReviewAPIView)
+                                     ModerateReviewAPIView,
+                                     ReviewDetailAPIView,
+                                     ReviewModerationAPIView)
 
 urlpatterns = [
     path('courses/', CoursesListAPIView.as_view(), name='api_courses_detail'),
