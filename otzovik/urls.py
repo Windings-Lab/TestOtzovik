@@ -18,7 +18,6 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('auth/', include('drf_social_oauth2.urls', namespace='drf')),
     path('', include('users.urls.urls')),
     path('', include('courses.urls.urls')),
     path('api/v1/', include('users.urls.api_urls')),
@@ -30,5 +29,5 @@ urlpatterns = [
 ]
 
 
-# if settings.DEBUG:
-#     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+if settings.DEBUG is False:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
