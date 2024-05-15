@@ -44,6 +44,44 @@ class CourseDetailAPIView(APIView):
         return Response(serializer.data)
 
 
+class CourseSearchAPIView(ListAPIView):
+    serializer_class = CourseSerializer
+
+    @swagger_auto_schema(
+        manual_parameters=[
+            openapi.Parameter('search', openapi.IN_QUERY, description="A search term.", type=openapi.TYPE_STRING,
+                              format='string'),
+        ],
+        operation_summary='Search courses by title',
+        operation_description='Retrieve courses whose title contains the specified string.'
+    )
+    def get_queryset(self):
+        title = self.request.query_params.get('search', '')
+        return Course.objects.filter(title__icontains=title)
+
+
+# class CourseSearchAPIView(APIView):
+#     serializer_class = CourseSerializer
+#
+#     @swagger_auto_schema(
+#         manual_parameters=[
+#             openapi.Parameter('search', openapi.IN_QUERY, description="A search term.", type=openapi.TYPE_STRING),
+#         ],
+#         operation_summary='Search courses by title',
+#         operation_description='Retrieve courses whose title contains the specified string.'
+#     )
+#     def get(self, request, *args, **kwargs):
+#         search_term = request.query_params.get('search', '')
+#
+#         if search_term:
+#             courses = Course.objects.filter(title__icontains=search_term)
+#         else:
+#             courses = Course.objects.all()
+#
+#         serializer = self.serializer_class(courses, many=True)
+#         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
 class ReviewDetailAPIView(APIView):
     @swagger_auto_schema(
         responses={200: ReviewSerializer()},
