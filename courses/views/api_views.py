@@ -179,5 +179,3 @@ class ModerateReviewAPIView(APIView):
                 return Response({"detail": "Status field is required"}, status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-

@@ -4,7 +4,7 @@ from pathlib import Path
 import dj_database_url
 from dotenv import find_dotenv, load_dotenv
 
-ENV_FILE = find_dotenv()
+ENV_FILE = find_dotenv('azure.env')
 
 if ENV_FILE:
     load_dotenv(ENV_FILE)
@@ -17,7 +17,7 @@ LINKEDIN_CALLBACK_URL = os.environ.get('LINKEDIN_CALLBACK_URL')
 # Postgres Params
 DB_NAME = os.environ.get('DB_NAME')
 DB_USER = os.environ.get('DB_USER')
-DB_HOST = os.environ.get('db_host')
+DB_HOST = os.environ.get('DB_HOST')
 DB_PASSWORD = os.environ.get('DB_PASSWORD')
 DB_URL = os.environ.get('DB_URL')
 
@@ -36,9 +36,9 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'users', 'templates')
 SECRET_KEY = DJANGO_SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', 'localhost:8000', '0.0.0.0', 'testotzovik.onrender.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', 'testotzovik.onrender.com', '4.225.114.128']
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
@@ -129,6 +129,9 @@ DATABASES = {'default': dj_database_url.config(default=DB_URL)}
 #         'PASSWORD': DB_PASSWORD,
 #         'HOST': DB_HOST,
 #         'PORT': '5432',
+#         'OPTIONS': {
+#             'sslmode': 'require',
+#         }
 #     }
 # }
 

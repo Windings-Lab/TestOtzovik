@@ -1,5 +1,4 @@
 import time
-
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -8,9 +7,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 url = 'https://www.linkedin.com/in/davidinmichael/'
-
-linkedin_username = 'username'
-linkedin_password = 'password'
+linkedin_username = ''
+linkedin_password = ''
 
 driver = webdriver.Chrome()
 
@@ -25,26 +23,26 @@ time.sleep(2)
 
 driver.get(url)
 try:
-    education_div = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.CLASS_NAME, 'tLzAqgOsJVrYZstVCPtfORDEWStVfVLul'))
-    )
-
     html_content = driver.page_source
-    with open('some.txt', 'w', encoding='utf-8') as file:
-        file.write(html_content)
-        print('HTML content written to file.')
 
     soup = BeautifulSoup(html_content, 'html.parser')
-    education = soup.find('div', class_='education-section')
 
-    if education:
-        spans_with_aria_hidden_true = education.find_all('span', attrs={'aria-hidden': 'true'})
+    if soup:
+        education_items = soup.find_all('a', class_='optional-action-target-wrapper')
+        print(education_items)
 
-        for span in spans_with_aria_hidden_true:
-            text_content = span.get_text(strip=True)
-            print("Text content:", text_content)
+        for item in education_items:
+            academy_name = item.find('span', class_='t-bold').get_text(strip=True)
+            degree_info = item.find('span', class_='t-14').get_text(strip=True)
+            date_info = item.find('span', class_='t-black--light').get_text(strip=True)
+
+            print("Academy:", academy_name)
+            print("Degree Info:", degree_info)
+            print("Date Info:", date_info)
+            print()
+
     else:
-        print('Education div not found.')
+        print('Education section not found.')
 
 except Exception as e:
     print("An error occurred:", e)

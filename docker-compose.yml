@@ -4,11 +4,11 @@ services:
   django:
     build: .
     ports:
-      - "8000:8000"
+      - "80:80"
     depends_on:
       - postgres
     env_file:
-      - .env
+      - azure.env
 
   postgres:
     image: postgres:latest

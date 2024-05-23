@@ -9,6 +9,8 @@ from courses.forms import ReviewForm
 from courses.linkedin import share_on_linkedin
 from courses.models import Course, Review
 
+from django.contrib.auth.models import AnonymousUser
+
 
 class CourseListView(ListView):
     model = Course
@@ -31,6 +33,8 @@ class AddReviewView(View):
     template_name = 'add_review.html'
 
     def get(self, request, pk):
+        if isinstance(request.user, AnonymousUser):
+            return redirect('login')
         form = ReviewForm()
         return render(request, self.template_name, {'form': form})
 

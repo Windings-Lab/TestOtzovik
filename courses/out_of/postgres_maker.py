@@ -5,17 +5,30 @@ import psycopg2
 from courses_parser import fetch_data, make_soup, parse_soup, total_links
 from django.conf import settings
 
+from dotenv import find_dotenv, load_dotenv
+
+ENV_FILE = find_dotenv('azure.env')
+
+if ENV_FILE:
+    load_dotenv(ENV_FILE)
+
+
+DB_NAME = os.environ.get('DB_NAME')
+DB_USER = os.environ.get('DB_USER')
+DB_HOST = os.environ.get('DB_HOST')
+DB_PASSWORD = os.environ.get('DB_PASSWORD')
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "otzovik.otzovik.settings")
 django.setup()
 
 
 def insert_course(course_data):
     conn = psycopg2.connect(
-        dbname=settings.DATABASES['default']['NAME'],
-        user=settings.DATABASES['default']['USER'],
-        password=settings.DATABASES['default']['PASSWORD'],
-        host=settings.DATABASES['default']['HOST'],
-        port=settings.DATABASES['default']['PORT']
+        dbname=DB_NAME,
+        user=DB_USER,
+        password=DB_PASSWORD,
+        host=DB_HOST,
+        port=5432
     )
     cursor = conn.cursor()
 
@@ -34,7 +47,12 @@ def insert_course(course_data):
     conn.close()
 
 
-for link in total_links():
-    soup = make_soup(fetch_data(link))
-    db_data = parse_soup(soup)
-    insert_course(db_data)
+def main():
+    for link in total_links():
+        soup = make_soup(fetch_data(link))
+        db_data = parse_soup(soup)
+        insert_course(db_data)
+
+
+if __name__ == '__main__':
+    main()

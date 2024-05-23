@@ -1,0 +1,6 @@
+__pycache__
+*.pyc
+*.pyo
+render.env
+.git
+.DS_Store
