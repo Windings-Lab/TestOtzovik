@@ -4,7 +4,7 @@ from pathlib import Path
 import dj_database_url
 from dotenv import find_dotenv, load_dotenv
 
-ENV_FILE = find_dotenv('azure.env')
+ENV_FILE = find_dotenv('render.env')
 
 if ENV_FILE:
     load_dotenv(ENV_FILE)
