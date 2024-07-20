@@ -1,13 +1,11 @@
 import os
+import definitions
 from pathlib import Path
 
 import dj_database_url
 from dotenv import find_dotenv, load_dotenv
 
-ENV_FILE = find_dotenv('render.env')
-
-if ENV_FILE:
-    load_dotenv(ENV_FILE)
+load_dotenv(find_dotenv('render.env'))
 
 # LinkedIn Params
 LINKEDIN_CLIENT_ID = os.environ.get('LINKEDIN_CLIENT_ID')
@@ -26,7 +24,7 @@ DJANGO_SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 PORT = int(os.environ.get('PORT', 8000))
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = definitions.ROOT_DIR
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'users', 'templates')
 
 # Quick-start development settings - unsuitable for production
